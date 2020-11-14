@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Usage: homestead <command>
+# Description: cd's into $HOMESTEAD directory and executes vagrant <command>
+function homestead() {
+  ( cd $HOMESTEAD && vagrant $* )
+}

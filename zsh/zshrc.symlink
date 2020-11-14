@@ -1,8 +1,29 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+# Path to Projects
+export PROJECTS=$HOME/Projects
+
+# Path to Web
+export CODE=$HOME/Web
+
+# Path to Homestead
+export HOMESTEAD=$HOME/Homestead
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="dracula"
+
+# Enables auto-update without prompting
+DISABLE_UPDATE_PROMPT="true"
+
+# How often to auto-update (in days)
+export UPDATE_ZSH_DAYS=13
+
+# Install plugins & aliases
+plugins=(git git-flow docker docker-compose)
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
