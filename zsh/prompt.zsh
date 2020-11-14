@@ -54,24 +54,41 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-battery_status() {
-  if test ! "$(uname)" = "Darwin"
-  then
-    exit 0
-  fi
+seasonal_emoji() {
+    if test ! "$(uname)" = "Darwin"
+    then
+      exit 0
+    fi
 
-  if [[ $(sysctl -n hw.model) == *"Book"* ]]
-  then
-    $ZSH/bin/battery-status
-  fi
+    if [[ $(sysctl -n hw.model) == *"Book"* ]]
+    then
+      case $(date +%m) in
+        12|1|2)
+          emoji="❄️"
+          ;;
+        3|4|5)
+          emoji="🌼"
+          ;;
+        6|7|8)
+          emoji="🌞"
+          ;;
+        9|11)
+          emoji="🍂"
+          ;;
+        10)
+          emoji="🎃"
+          ;;
+      esac
+
+      printf "$emoji"
+    fi
 }
 
-export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(seasonal_emoji) in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
 
 precmd() {
-  title "zsh" "%m" "%55<...<%~"
   set_prompt
 }
